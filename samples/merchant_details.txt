@@ -1,0 +1,18 @@
+Details to type into the form (they match the sample files)
+
+Shop or business name : Sharma General Store
+Owner's full name     : Rahul Sharma
+Type of business      : proprietorship
+Phone                 : 9876543210
+Email                 : rahul@sharmastore.example
+PAN                   : ABCPS1234E
+GSTIN                 : 27ABCPS1234E1Z5
+Bank account number   : 551234567890
+IFSC code             : HDFC0001234
+Name on bank account  : Rahul Sharma
+
+What to try
+  pan_card.pdf + gst_certificate.pdf + bank_proof.pdf   everything matches, so the checks start
+  pan_card_WRONG_PAN.pdf                                 the PAN is different from the form, so the merchant is asked to fix it
+  pan_card_photo_BLURRY.png                              too blurry to read, so the merchant is asked for a clearer one
+  pan_card_photo_clear.png                               a clear photo; it is accepted but a person must read it
