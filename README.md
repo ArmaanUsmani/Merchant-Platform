@@ -30,7 +30,7 @@ npm start
 Then open http://localhost:4000.
 
 - **Database:** if you don't set `MONGO_URI`, a private MongoDB is downloaded once (about 70 MB) and started for you; its data is kept in the `.data` folder. To use your own database (Atlas, Docker, local), run `MONGO_URI=mongodb://... npm start`.
-- **Tests:** `npm test` (42 tests, real MongoDB, no mocks of our own code).
+- **Tests:** `npm test` (44 tests, real MongoDB, no mocks of our own code).
 - **Sample files to upload:** `npm run samples` writes PDFs and photos into the `samples` folder, with a `merchant_details.txt` that matches them.
 - **Type check:** `npm run typecheck`.
 - **Development with auto-reload:** `npm run dev` (page on http://localhost:5173).
@@ -115,7 +115,7 @@ Also covered: a provider that is down for a moment (retries work) or for good (a
   - `npm audit` reports issues only in development tools (the test runner and the dev server), none in the packages the app runs on. They were left alone rather than forcing major upgrades late in the project.
   - The page refreshes every few seconds instead of using live updates.
   - Retries run in one server process. That is fine for a demo; for more load the "what is due" query could be shared by several workers.
-  - If you ran an older version of this project, delete the `.data` folder once: its saved applications use an older format.
+  - Applications saved by an older version of this project (before numbers were encrypted) are upgraded automatically when the server starts. See `server/src/migrate.ts`.
 - The demo shortcut "retry also fixes the simulated outage" can be turned off with `DEMO_AUTOHEAL=false`.
 - MongoDB's own check wants some free disk space; the app lowers it for the built-in database so it can start on a nearly full laptop.
 

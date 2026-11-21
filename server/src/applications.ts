@@ -29,7 +29,7 @@ const docsOf = (app: AppDoc): DocInput[] => (app.rawDocs ? decrypt<DocInput[]>(a
 const businessOf = (f: Form) => ({ name: f.businessName, legalName: f.legalName, type: f.businessType, email: f.email, phone: clean(f.phone) });
 
 /** Stores the PAN, GSTIN and account number three ways: encrypted, as a fingerprint for duplicate checks, and masked for display. */
-function protect(f: Form) {
+export function protect(f: Form) {
   const pan = clean(f.pan), gstin = clean(f.gstin), account = clean(f.bank.accountNumber);
   return {
     secret: encrypt({ pan, gstin, accountNumber: account }),

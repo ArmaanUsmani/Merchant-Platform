@@ -1,14 +1,15 @@
 import { createApp } from './app.js';
 import { config } from './config.js';
 import { connectDb, disconnectDb } from './db.js';
-import { Application } from './models.js';
+import { migrateOldRecords } from './migrate.js';
 import { sweep } from './workflow.js';
 
 await connectDb({ keepData: true });
 
-// Applications saved by an older version of this project do not have the encrypted fields. Say so, instead of failing later.
-const old = await Application.countDocuments({ secret: { $exists: false } });
-if (old > 0) console.warn(`\nWARNING: ${old} saved application(s) come from an older version and cannot be opened.\nTo start fresh: stop the server, delete the .data folder, and start again.\n`);
+// Applications saved by an older version of this project are upgraded in place.
+const upgraded = await migrateOldRecords();
+if (upgraded > 0) console.log(`Upgraded ${upgraded} saved application(s) from an older version.`);
+
 const server = createApp().listen(config.port, () => {
   console.log(`\nMerchant onboarding is running at http://localhost:${config.port}\n`);
 });
