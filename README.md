@@ -4,6 +4,20 @@ A small web app that onboards merchants for a payments company. A merchant appli
 
 Built with MongoDB, Express, React and Node, all in TypeScript.
 
+## Screenshots
+
+**The list of applications.** Every case, the stage it is at, the four checks, and how the process is doing.
+
+![The list of applications](docs/screenshots/applications.png)
+
+**A case that needs a person.** The reason is in plain words, and the decision needs a name and a written reason.
+
+![A case waiting for a review](docs/screenshots/review.png)
+
+**The timeline of a case.** Here the bank's answer arrived after the timeout. It was still used, the merchant ID was created, and the retry's extra answer was ignored.
+
+![The timeline of a case where an answer arrived late](docs/screenshots/timeline.png)
+
 ## Run it
 
 You need Node 20 or newer.
